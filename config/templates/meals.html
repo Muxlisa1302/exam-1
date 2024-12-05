@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meal Management</h1>
+        <form id="mealForm">
+            <label for="mealName">Meal Name:</label>
+            <input type="text" id="mealName" name="mealName" required>
+
+            <label for="ingredients">Ingredients:</label>
+            <input type="text" id="ingredients" name="ingredients" required>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="" disabled selected>Select Type</option>
+                <option value="Appetizer">Appetizer</option>
+                <option value="Main Course">Main Course</option>
+                <option value="Dessert">Dessert</option>
+            </select>
+
+            <label for="cuisine">Cuisine:</label>
+            <input type="text" id="cuisine" name="cuisine" required>
+
+            <button type="button" onclick="addMeal()">Create Meal</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Ingredients</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Cuisine</th>
+                </tr>
+            </thead>
+            <tbody id="mealList">
+                <tr>
+                    <td>Caesar Salad</td>
+                    <td>Lettuce, croutons, parmesan, Caesar dressing</td>
+                    <td>$12.99</td>
+                    <td>Appetizer</td>
+                    <td>Italian</td>
+                </tr>
+                <tr>
+                    <td>Grilled Chicken</td>
+                    <td>Chicken breast, spices, olive oil</td>
+                    <td>$18.90</td>
+                    <td>Main Course</td>
+                    <td>American</td>
+                </tr>
+                <tr>
+                    <td>Chocolate Cake</td>
+                    <td>Flour, cocoa, sugar, butter</td>
+                    <td>$6.99</td>
+                    <td>Dessert</td>
+                    <td>French</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addMeal() {
+            const mealName = document.getElementById('mealName').value;
+            const ingredients = document.getElementById('ingredients').value;
+            const price = document.getElementById('price').value;
+            const type = document.getElementById('type').value;
+            const cuisine = document.getElementById('cuisine').value;
+
+            if (mealName && ingredients && price && type && cuisine) {
+                const table = document.getElementById('mealList');
+                const row = table.insertRow();
+        row.innerHTML =
+                    <td>${mealName}</td>
+                    <td>${ingredients}</td>
+                    <td>${price}</td>
+                    <td>${type}</td>
+                    <td>${cuisine}</td>
+                ;
+
+                document.getElementById('mealForm').reset();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>

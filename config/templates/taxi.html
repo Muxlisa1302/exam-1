@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Management</title>
+</head>
+<body>
+    <h1>Taxi Management</h1>
+    <form id="taxiForm">
+        <input type="text" id="taxiName" placeholder="Taxi Name" required>
+        <input type="text" id="licensePlate" placeholder="License Plate" required>
+        <input type="text" id="driverName" placeholder="Driver Name" required>
+        <input type="number" id="capacity" placeholder="Passenger Capacity" required>
+        <input type="text" id="model" placeholder="Car Model" required>
+        <select id="status" required>
+            <option value="" disabled selected>Status</option>
+            <option>Available</option>
+            <option>Busy</option>
+            <option>Under Maintenance</option>
+        </select>
+        <button type="button" onclick="addTaxi()">Create Taxi</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Taxi Name</th>
+                <th>License Plate</th>
+                <th>Driver</th>
+                <th>Capacity</th>
+                <th>Model</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="taxiList">
+            <tr>
+                <td>CityCab</td>
+                <td>AB123CD</td>
+                <td>John Doe</td>
+                <td>4</td>
+                <td>Toyota Prius</td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td>ExpressRide</td>
+                <td>EF456GH</td>
+                <td>Jane Smith</td>
+                <td>6</td>
+                <td>Honda Odyssey</td>
+                <td>Busy</td>
+            </tr>
+            <tr>
+                <td>GreenTaxi</td>
+                <td>J789KL</td>
+                <td>Ahmed Khan</td>
+                <td>4</td>
+                <td>Hyundai Sonata</td>
+                <td>Under Maintenance</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function addTaxi() {
+            const taxiName = document.getElementById('taxiName').value;
+            const licensePlate = document.getElementById('licensePlate').value;
+            const driverName = document.getElementById('driverName').value;
+            const capacity = document.getElementById('capacity').value;
+            const model = document.getElementById('model').value;
+            const status = document.getElementById('status').value;
+
+            if (taxiName && licensePlate && driverName && capacity && model && status) {
+                const table = document.getElementById('taxiList');
+                const row = table.insertRow();
+
+                row.innerHTML =
+                    <td>${taxiName}</td>
+                    <td>${licensePlate}</td>
+                    <td>${driverName}</td>
+                    <td>${capacity}</td>
+                    <td>${model}</td>
+                    <td>${status}</td>
+                ;
+
+                document.getElementById('taxiForm').reset();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
